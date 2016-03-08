@@ -6,6 +6,10 @@ a schema file (.XSD), a documentation in Excel (.XLSX) and a sample file (.XML).
 Print paper suppliers that distribute their articles in this format will allow for printers to automatically
 import these price list into their business application.
 
+### Where can I download the latest version?
+Browse the repository for the file or use the following direct links.
+- [XSD schema file v.2.0.0](https://github.com/scppc/paper-pricelist/raw/master/V.2.0.0/schemas/kepa_edi_20.xsd?raw=true)
+- [Documentation v.2.0.0](https://github.com/scppc/paper-pricelist/blob/master/V.2.0.0/docs/Specification.xlsx?raw=true)
 
 ### Background
 These standard documents were initially created within organization [KEPA](https://www.kepa.nu) but was later moved to
