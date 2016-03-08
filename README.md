@@ -12,7 +12,7 @@ Browse the repository for the file or use the following direct links.
 - [Documentation v.2.0.0](https://github.com/scppc/paper-pricelist/blob/master/V.2.0.0/docs/Specification.xlsx?raw=true)
 
 ### Background
-These standard documents were initially created within organization [KEPA](https://www.kepa.nu) but was later moved to
+These standard documents were initially created within organization [KEPA](http://www.kepa.nu) but was later moved to
 GitHub. The standard solves problems with previous ASCII file formats that were not possible to validate for correctness.
 
 ### Changelog
