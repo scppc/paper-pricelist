@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://kepa.nu/ap/v2" xmlns:p="http://kepa.nu/ap/v2" version="1.0">
+<!--
+- Version history -
+1.0      Initial release
+1.01     Version type changed from int to decimal
+         Made Price not-mandatory
+         Added positive restrictions on Width, Length, Centra, RollDiameter, Weight, Thickness
+         Added type PositiveInteger which is used for elements of integer kind
+         Added version history in XSD
+         "minOccurs" is set to "0" on elements: Grade, Symmetric, Thickness, Weight, Width, Length, RollDiameter,
+          Centra, MinimumSalesUit, SalesMultiple, Breakable, LeadTime
+2.0-RC1  WeightPerUnit, SquareMetres changed type from Integer to Double
+         Added type PositiveDouble which is used for elements of double kind
+         Changed version from decimal to string
+         Added version strategy
+2.0-RC2  Use xs:decimal instead of xs:double
+         Changed name of PositiveDouble to PositiveDecimal
+         Re-factored element EcoCertification. The element now contains sub-elements for Type and Description. Where
+         Type typically is PEFC or FSC
+         PositiveInteger and PositiveDecimal are moved to top of the document
+2.0-RC3  SalesUnitsPerTransportUnit changed from string to PositiveInteger
+         Centra, RollDiameter, Length, Width, Thickness, Weight is changed from PositiveInteger to PositiveDecimal
+         Target name space changed from http://kepa.nu/ap/v1 to http://kepa.nu/ap/v2
+         Added comment section Elements and Escaping
+2.0-RC4  Updated SupplierId and ClientId description
+         Added description for Grade, SquareMetres and WeightPerUnit
+         Thickness description changed unit from mm to um
+         SalesUnitsPerTransportUnit, SalesUnit and MinimumSalesUnit are changed to PositiveDecimal
+2.0-RC5  Updated WeightPerUnit example value from 0.01 to 0.04032000
+2.0-RC6  Added <xs:any> element to all complex types to handle customized elements
+2.0-RC7  Added <Color> element. The color element contains a human readable color description
+2.0.0    Final release of version 2.0. Published to GitHub on https://github.com/scppc/paper-pricelist
+
+
+- Version strategy -
+The version number is specified on the form <Major>.<Minor>
+
+For new, compatible versions of the document, the Major version remains unchanged whereas the Minor version is
+increased one step, e.g. from 3.0 to 3.1.
+
+For new, non-compatible versions, the Major version is increased and the Minor version is reset to 0, e.g. from 3.1 to 4.0.
+The name space will follow the major version and be increased one step between non-compatible versions, e.g. from
+http://kepa.nu/ap/v3 to http://kepa.nu/ap/v4
+
+When the document is about to be updated a suffix is added during the review process. The suffix is added to the minor version
+of the new purposed version, e.g. 3.0 to 3.1-RC1. If any changes are needed after review the suffix is increased one step.
+When the document is approved, the suffix is removed, e.g. 3.1-RC4 to 3.1 and a new version of the document can be published.
+
+
+- Escaping -
+Special XML characters in element's text part can be handled by using CDATA or escaping.
+Example:
+ <![CDATA[& < > " å ä ö Å Ä Ö]]>
+ & < > " å ä ö Å Ä Ö  =>  &amp; &lt; &gt; &quot; &#229; &#228; &#246; &#197; &#196; &#214;
+
+
+- Elements -
+
+Element: ArticlesPrices
+ The element ArticlePrices is the root element and contains information about the price file content.
+Example:
+ <ArticlesPrices xmlns="http://kepa.nu/ap/v2">
+    <Version>2.0</Version>
+    <SupplierId>123456-1234</SupplierId>
+    <SupplierName>My company</SupplierName>
+    <ClientId>123456</ClientId>
+    <ClientName>My customer</ClientName>
+    <Created>2013-06-22</Created>
+    <ValidFrom>2013-06-22</ValidFrom>
+    <ArticlePrice>
+    ..
+    </ArticlePrice>
+ </ArticlePrices>
+
+Element: Version
+ The version element contains the version of the XSD file that the XML file corresponds to.
+Element: SupplierId
+ The SupplierId identifies the part that produces the prices. Typically the company's organization number or GLN number.
+Element: SupplierName
+ The name of the supplier.
+Element: ClientId
+ Identifies the customer the price file is generated for. Typically customer Id could be organization number or GLN number
+Element: ClientName
+ The name of the customer.
+Element: Created
+ Creation date of the file.
+Element: ValidFrom
+ The date when the price file is valid from.
+
+Element: ArticlePrice
+ The ArticlePrice contains information, metrics and prices for one article.
+Example:
+<ArticlePrice>
+  <ArticleNumber>123456789</ArticleNumber>
+  <ArticleDisplayname>Multi copy</ArticleDisplayname>
+  <ArticleDescription></ArticleDescription>
+  <EcoCertification>
+    <Type>PEFC</Type>
+  </EcoCertification>
+  <EcoCertification>
+    <Type>FSC</Type>
+    <Description>100% FSC Certified</Description>
+  </EcoCertification>
+  <ArticleGroupCode>1234</ArticleGroupCode>
+  <ArticleGroupDescription>Office paper</ArticleGroupDescription>
+  <Grade>1</Grade>
+  <Color>Blue</Color>
+  <Symmetric>true</Symmetric>
+  <Thickness>1</Thickness>
+  <Weight>220</Weight>
+  <Width>450</Width>
+  <Length>640</Length>
+  <RollDiameter>700</RollDiameter>
+  <Centra>70</Centra>
+  <SquareMetres>2.5</SquareMetres>
+  <WeightPerUnit>0.04032000</WeightPerUnit>
+  <SalesUnit>ARK</SalesUnit>
+  <MinimumSalesUnit>250</MinimumSalesUnit>
+  <SalesMultiple>250</SalesMultiple>
+  <Packaging>
+    <PackagingUnit>PKT</PackagingUnit>
+    <SalesUnitsPerPackagingUnit>250</SalesUnitsPerPackagingUnit>
+  </Packaging>
+  <TransportPackagingUnit>PAL</TransportPackagingUnit>
+  <SalesUnitsPerTransportUnit>21000</SalesUnitsPerTransportUnit>
+  <Breakable>false</Breakable>
+  <LeadTime>normal</LeadTime>
+  <Currency>SEK</Currency>
+  <Price>
+    <Amount>55.50</Amount>
+    <Unit>ARK</Unit>
+    <Factor>1000</Factor>
+    <Scale>7000</Scale>
+    <ScaleUnit>ARK</ScaleUnit>
+  </Price>
+  <Price>
+    <Amount>44.40</Amount>
+    <Unit>ARK</Unit>
+    <Factor>1000</Factor>
+    <Scale>21000</Scale>
+    <ScaleUnit>ARK</ScaleUnit>
+  </Price>
+</ArticlePrice>
+
+Element: ArticleNumber
+ The article number is an unique identifier of the article.
+ The number may be used to order the article in an system-to-system solution.
+
+Element: ArticleDisplayname
+ The article's display name. Should be possible to understand for end-user.
+
+Element: ArticleDescription
+ The article's extra description.
+
+Element: EcoCertification
+ EcoCertification indicates that the article is has an eco certification.
+Sub-Element: Type
+ Contains the kind of certification. Typically PEFC or FSC.
+Sub-Element: Description
+ The eco certification description.
+
+Element: ArticleGroupCode
+ Articles can belong to a parent group of articles. The ArticleGroupCode is an identifier of one group.
+ Example: "Multi Copy" may belong the group "Office paper"
+
+Element: ArticleGroupDescription
+ The ArticleGroupDescription is a user understandable description of the article group.
+
+Element: Grade
+ Defines material type for paper articles according to ISO12647-2:2004.
+ Example: <Grade>1</Grade> => gloss-coated, wood-free
+
+Element: Color
+ Defines the aricle's color in human readable fashion
+
+Element: Symmetric
+ Indicates whether the surface is symmetric or not.
+ Example: a paper has the same surface on both sides and is printable on both sides
+
+Element: Thickness
+ The article's thickness in micrometers (μm or my).
+
+Element: Weight
+ The article's grammage in gram per square meter (g/m2).
+
+Element: Width
+ The article's width in millimeters (mm).
+
+Element: Length
+ The article's length in millimeters (mm).
+
+Element: RollDiameter
+ The outer diameter in millimeters (mm).
+
+Element: Centra
+ The core diameter in millimeters (mm).
+
+Element: SquareMetres
+ The article's area measured in square meters (m2)
+
+Element: WeightPerUnit
+ The aricle's weight for each sales unit in kilograms (kg).
+ Example: If the sales unit is ARK the WeightPerUnit could be 0.04032000 kg per ARK
+
+Element: SalesUnit
+ The unit that the article is sold in.
+
+Element: MinimumSalesUnit
+ The least amount of articles in the defined sales unit that is possible to buy.
+
+Element: SalesMultiple
+ The least multiple amount that the article can be bought in.
+ Example: If the SalesMultiple is 250 and MinimumSalesUnit is 500 and you need 600. You
+ have to buy 750.
+
+Element: Packaging
+ Defines the possible packaging the article is available in.
+Sub-Element: PackagingUnit
+ The unit that the packing is counted in.
+Sub-Element: SalesUnitsPerPackagingUnit
+ The amount of units each packaging unit contains.
+
+Element: TransportPackagingUnit
+ Defines unit for transport.
+
+Element: SalesUnitsPerTransportUnit
+ The amount of units each transport unit contains.
+
+Element: Breakable
+ Defines if the article is possible to break.
+
+Element: LeadTime
+ May indicate that the article has extended delivery time.
+ Example: The article is placed in a sub-contractor's plant.
+
+Element: Currency
+ The prices currency in ISO4217 codes.
+
+Element: Price
+ The Price element contains the price for a specified amount of units.
+Example:
+  <Price>
+    <Amount>55.50</Amount>
+    <Unit>ARK</Unit>
+    <Factor>1000</Factor>
+    <Scale>7000</Scale>
+    <ScaleUnit>ARK</ScaleUnit>
+  </Price>
+  <Price>
+    <Amount>44.40</Amount>
+    <Unit>ARK</Unit>
+    <Factor>1000</Factor>
+    <Scale>21000</Scale>
+    <ScaleUnit>ARK</ScaleUnit>
+  </Price>
+
+Element: Amount
+ The price in defined currency for the specified factor and unit.
+Example: 55.50 SEK for 1000 ARK
+
+Element: Unit
+ The Factor unit
+
+Element: Factor
+ The number of articles for the price specified in element Amount.
+Example: 1000 ARK
+
+Element: Scale
+ The Scale specifies from which number (inclusive) of articles the price is counted for
+Example 1:
+ Scale1: 7000 SEK
+ Amount1: 55.50 ARK
+ Scale2: 21000 ARK
+ Amount2: 44.40 SEK
+ The price is 55.50 SEK for 7 000 ARK to 20 999 ARK and 44.40 for >= 21 000 ARK
+
+Element: ScaleUnit
+ The Scale unit
+ -->
+
+  <xs:simpleType name="PositiveInteger">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PositiveDecimal">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="LeadTimeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="normal" />
+      <xs:enumeration value="extended" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="PackagingType">
+    <xs:sequence>
+      <xs:element name="PackagingUnit" type="xs:string" />
+      <xs:element name="SalesUnitsPerPackagingUnit" type="p:PositiveDecimal" />
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PriceType">
+    <xs:sequence>
+      <xs:element name="Amount" type="xs:decimal" />
+      <xs:element name="Unit" type="xs:string" />
+      <xs:element name="Factor" type="p:PositiveInteger" />
+      <xs:element name="Scale" type="p:PositiveInteger" />
+      <xs:element name="ScaleUnit" type="xs:string" />
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="CurrencyType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="EcoCertificationType">
+    <xs:sequence>
+      <xs:element name="Type" type="xs:string"/>
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArticlePriceType">
+    <xs:sequence>
+      <xs:element name="ArticleNumber" type="xs:string" />
+      <xs:element name="ArticleDisplayname" type="xs:string" />
+      <xs:element name="ArticleDescription" type="xs:string" />
+      <xs:element name="EcoCertification" type="p:EcoCertificationType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="ArticleGroupCode" type="xs:string" />
+      <xs:element name="ArticleGroupDescription" type="xs:string" />
+      <xs:element name="Grade" type="xs:string" minOccurs="0" />
+      <xs:element name="Color" type="xs:string" minOccurs="0" />
+      <xs:element name="Symmetric" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Thickness" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="Weight" type="p:PositiveDecimal" minOccurs="0" />  <!-- previously Grammage -->
+      <xs:element name="Width" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="Length" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="RollDiameter" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="Centra" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="SquareMetres" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="WeightPerUnit" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="SalesUnit" type="xs:string" />
+      <xs:element name="MinimumSalesUnit" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="SalesMultiple" type="p:PositiveInteger" minOccurs="0" />
+      <xs:element name="Packaging" type="p:PackagingType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="TransportPackagingUnit" type="xs:string" minOccurs="0" />
+      <xs:element name="SalesUnitsPerTransportUnit" type="p:PositiveDecimal" minOccurs="0" />
+      <xs:element name="Breakable" type="xs:boolean" minOccurs="0" />
+      <xs:element name="LeadTime" type="p:LeadTimeType" default="normal" minOccurs="0" />
+      <xs:element name="Currency" type="p:CurrencyType" />
+      <xs:element name="Price" type="p:PriceType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="ArticlesPrices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Version" type="xs:string" />
+        <xs:element name="SupplierId" type="xs:string" />
+        <xs:element name="SupplierName" type="xs:string" />
+        <xs:element name="ClientId" type="xs:string" />
+        <xs:element name="ClientName" type="xs:string" />
+        <xs:element name="Created" type="xs:date" />
+        <xs:element name="ValidFrom" type="xs:date" />
+        <xs:element name="ArticlePrice" type="p:ArticlePriceType" maxOccurs="unbounded" />
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:key name="ArticleNumberKey">
+      <xs:selector xpath="p:ArticlePrice" />
+      <xs:field xpath="p:ArticleNumber" />
+    </xs:key>
+  </xs:element>
+
+</xs:schema>
