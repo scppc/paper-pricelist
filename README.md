@@ -11,6 +11,10 @@ Browse the repository for the file or use the following direct links.
 - [XSD schema file v.2.0.0](https://github.com/scppc/paper-pricelist/raw/master/V.2.0.0/schemas/kepa_edi_20.xsd?raw=true)
 - [Documentation v.2.0.0](https://github.com/scppc/paper-pricelist/blob/master/V.2.0.0/docs/Specification.xlsx?raw=true)
 
+### Is there any sample of how a paper pricelist looks like?
+Sure, there is a simple sample showing the basic structure here:
+- [Sample file](https://github.com/scppc/paper-pricelist/raw/master/V.2.0.0/samples/sample_pricefile.xml)
+
 ### Background
 These standard documents were initially created within organization [KEPA](http://www.kepa.nu) but was later moved to
 GitHub. The standard solves problems with previous ASCII file formats that were not possible to validate for correctness.
