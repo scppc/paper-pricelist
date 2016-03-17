@@ -7,7 +7,7 @@ Print paper suppliers that distribute their articles in this format will allow f
 import these price list into their business application.
 
 ### Where can I download the latest version?
-Browse the repository for the file or use the following direct links.
+You can download the latest [release package](https://github.com/scppc/paper-pricelist/releases) or use the the following links to download individual files:
 - [XSD schema file v.2.0.0](https://github.com/scppc/paper-pricelist/raw/master/V.2.0.0/schemas/kepa_edi_20.xsd?raw=true)
 - [Documentation v.2.0.0](https://github.com/scppc/paper-pricelist/blob/master/V.2.0.0/docs/Specification.xlsx?raw=true)
 
