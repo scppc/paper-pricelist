@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ArticlesPrices xmlns="http://kepa.nu/ap/v2"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://kepa.nu/ap/v2 https://github.com/scppc/paper-pricelist/raw/master/V.2.0.0/schemas/kepa_edi_20.xsd">
+  <Version>2.0</Version>
+  <SupplierId>556538-4582</SupplierId>
+  <SupplierName>Paper Supplier In Sweden AB</SupplierName>
+  <ClientId>556677-5050</ClientId>
+  <ClientName>Tryckeriet AB</ClientName>
+  <Created>2020-05-07</Created>
+  <ValidFrom>2020-05-07</ValidFrom>
+  <ArticlePrice>
+    <ArticleNumber>12345678</ArticleNumber>
+    <ArticleDisplayname>SuperMaxArt</ArticleDisplayname>
+    <ArticleDescription>
+      SuperMaxArt är ett högbestruket papper med en slät silk ytfinish. Kännetecknande för SuperSilk är den jämna och höga kvaliteten, körbarheten och de korta torktiderna.
+    </ArticleDescription>
+    <EcoCertification>
+      <Type>FSC</Type>
+      <Description>This paper is FSC certified.</Description>
+    </EcoCertification>
+    <EcoCertification>
+      <Type>ISO14001</Type>
+    </EcoCertification>
+    <ArticleGroupCode>0101</ArticleGroupCode>
+    <ArticleGroupDescription>Custom supplier group A</ArticleGroupDescription>
+    <Grade>1</Grade>
+    <Color>Orange</Color>
+    <Symmetric>true</Symmetric>
+    <Thickness>120</Thickness>
+    <Weight>150</Weight>
+    <Width>720</Width>
+    <Length>1020</Length>
+    <WeightPerUnit>0.11016</WeightPerUnit>
+    <SalesUnit>M2</SalesUnit>
+    <MinimumSalesUnit>1</MinimumSalesUnit>
+    <SalesMultiple>1</SalesMultiple>
+    <Packaging>
+      <PackagingUnit>PKT</PackagingUnit>
+      <SalesUnitsPerPackagingUnit>500</SalesUnitsPerPackagingUnit>
+    </Packaging>
+    <TransportPackagingUnit>PALL</TransportPackagingUnit>
+    <SalesUnitsPerTransportUnit>3000</SalesUnitsPerTransportUnit>
+    <Breakable>false</Breakable>
+    <LeadTime>extended</LeadTime>
+    <Currency>SEK</Currency>
+    <Price>
+      <Amount>20.50</Amount>
+      <Unit>M2</Unit>
+      <Factor>1</Factor>
+      <Scale>0</Scale>
+      <ScaleUnit>M2</ScaleUnit>
+    </Price>
+  </ArticlePrice>
+</ArticlesPrices>
