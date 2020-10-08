@@ -39,7 +39,7 @@ The following companies have contributed to the standard documents.
 | Company | Website | Contact person |
 | --- | --- | --- |
 | Antalis AB | http://www.antalis.se | Peter Argården |
-| Berg-Andersen AS | http://berg-andersen.no | Eiliv Hagen |
-| Igepa Berg-Andersen AB | http://www.igepa.se | Lars Arvidson |
+| Berg-Andersen AS |  | Eiliv Hagen |
+| Igepa Berg-Andersen AB |  | Lars Arvidson |
 | Papyrus AB | http://www.papyrus.se | Martin Åström |
 | Simutek AB | http://www.simutek.se | Michael Bergman |
